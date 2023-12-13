@@ -27,6 +27,7 @@ public class CandidateSkill {
 
     @Column(name = "skill_level", nullable = false)
     private SkillLevel skillLevel;
+
     @Column(name = "more_infos", length = 1000)
     private String moreInfo;
 }

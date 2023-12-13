@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>INSERT CANDIDATE</title>
+
+    <style>
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        input {
+            width: 500px;
+            height: 35px;
+            margin-bottom: 20px;
+            padding: 10px 10px 10px 30px;
+        }
+    </style>
+</head>
+<body>
+    <form th:action="@{/addCandidate}" method="post" th:object="${candidate}">
+        <h2>INSERT CANDIDATE</h2>
+
+        <label>
+            <input type="text" id="name" name="name" th:field="*{fullName}" required placeholder="Enter full name">
+        </label>
+
+        <label>
+            <input type="email" id="email" name="email" th:field="*{email}" required placeholder="Enter email">
+        </label>
+
+        <label>
+            <input type="date" id="dob" name="dob" th:field="*{dob}" required placeholder="Enter date of birth">
+        </label>
+
+        <label>
+            <input type="tel" id="phone" name="phone" th:field="*{phone}" placeholder="Enter phone">
+        </label>
+
+        <h2>ADDRESS</h2>
+
+        <label>
+            <input type="number" id="number" name="number" th:field="*{address.number}" required placeholder="Enter number">
+        </label>
+
+        <label>
+            <input type="text" id="street" name="street" th:field="*{address.street}" required placeholder="Enter street">
+        </label>
+
+        <label>
+            <input type="text" id="city" name="city" th:field="*{address.city}" required placeholder="Enter city">
+        </label>
+
+        <label>
+            <input type="text" id="country" name="country" th:field="*{address.country}" required placeholder="Enter country">
+        </label>
+
+        <label>
+            <input type="number" id="zipCode" name="zipCode" th:field="*{address.zipcode}" required placeholder="Enter zipcode">
+        </label>
+
+        <button type="submit" class="btn btn-success">NEW CANDIDATE</button>
+    </form>
+</body>
+</html>

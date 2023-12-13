@@ -1,16 +1,20 @@
 package vn.edu.iuh.fit.week05_nguyenlemychau_20046631.backend.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum SkillLevel {
-    MASTER(5),
-
-    PROFESSIONAL(4),
-
-    ADVANCED(3),
-
+    TEST(0),
+    BEGINER(1),
     IMTERMEDIATE(2),
+    ADVANCED(3),
+    PROFESSIONAL(4),
+    MASTER(5);
 
-    BEGINER(1);
+    private int value;
 
     SkillLevel(int value) {
     }
+
+
 }

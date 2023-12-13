@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Skill</title>
+    <style>
+        body{
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Skill</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Desc</th>
+            <th>Type</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="skill : ${skills}">
+            <td th:text="${skill.id}"></td>
+            <td th:text="${skill.skillName}"></td>
+            <td th:text="${skill.skillDescription}"></td>
+            <td th:text="${skill.type}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

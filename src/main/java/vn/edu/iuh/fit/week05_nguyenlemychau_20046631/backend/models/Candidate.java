@@ -48,6 +48,7 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<Experience> experiences;
 
+
     @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<CandidateSkill> candidateSkills;
 }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    div.inline {
+        color: black;
+        float: left;
+        padding: 5px 5px;
+        text-decoration: none;
+        display: inline-block;
+    }
+    div.inline a.active {
+        background-color: #FBD603;
+        border:1px solid darkred;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates with pagination</title>
+    <meta charset="UTF-8">
+    <title>Candidates</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<form th:action="@{/candidates/byName}" method="post">
+    <h1 class="text-center">LIST CANDIDATES</h1>
+    <button type="button" class="btn btn-info" style="margin-left: 45%; margin-top: 15px; margin-bottom: 20px">
+        <a href="http://localhost:8080/addCandidate" style="color: white">NEW CANDIDATE</a>
+    </button>
+    <div style="flex-direction: row; margin-left: 40%; margin-bottom: 20px">
+        <label>
+            <input type="text" name="keyword" id="keyword" style="width: 200px; height: 40px; padding-left: 20px;" placeholder="Enter name">
+        </label>
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<form th:action="@{/candidates/bySkill}" method="post">
+<div th:each="skill : ${skills}"
+         style="display: inline-block; margin-bottom: 20px;">
+
+            <label style="margin-left: 50px">
+
+                <input type="checkbox"
+                       th:value="${skill.id}"
+                       th:name="skills"
+                       th:attr="id=${skill.id}">
+                <span th:text="${skill.skillName}"></span>
+
+            </label>
+
+</div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+    <table class="table table-hover">
+    <thead>
+    </thead>
+    <tbody>
+    <tr th:each="candidate, iStat : ${candidatePage.content}"
+        th:style="${iStat.odd}? 'font-weight: bold;'"
+        th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <td th:text="${candidate.id}"></td>
+        <td th:text="${candidate.fullName}"></td>
+        <td th:text="${candidate.dob}"></td>
+        <td th:text="${candidate.address}"></td>
+        <td th:text="${candidate.phone}"></td>
+        <td th:text="${candidate.email}"></td>
+        <td><a th:href="@{/edit/{id}(id=${candidate.id})}">Edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${candidate.id})}">Delete</a></td>
+        <td><a th:href="@{/view/{id}(id=${candidate.id})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="inline" th:if="${candidatePage.totalPages > 0}" th:each="pageNumber :
+${pageNumbers}">
+    <a th:href="@{/candidates(size=${candidatePage.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==candidatePage.number + 1} ? active"></a>
+</div>
+<br/>
+<!--<div class = "row"><a href="/add-candidate">Add a new Candidate</a></div>-->
+</body>
+</html>
